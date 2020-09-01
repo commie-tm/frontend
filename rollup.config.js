@@ -10,16 +10,19 @@ import livereload from 'rollup-plugin-livereload';
 import { readFileSync } from 'fs';
 import { join } from 'path';
 import typescript from '@rollup/plugin-typescript';
+import { config as envConfig } from 'dotenv';
+
+envConfig();
 
 let isProd = false;
 if (process.env.NODE_ENV === 'production') isProd = true;
 const extensions = ['.js', '.ts', '.tsx'];
 
 export default {
-  input: join("src", "index.tsx"),
+  input: join("src", "mounter.tsx"),
   output: {
     file: join("public", "bundle.js"),
-    format: 'iife',
+    format: 'cjs',
   },
   plugins: [
     replace({
@@ -66,7 +69,7 @@ export default {
       },
     }),
     scss({
-      output: 'public/index.css',
+      output: 'public/style.css',
     }),
     (isProd && terser()),
     (!isProd && serve({
@@ -78,5 +81,5 @@ export default {
     (!isProd && livereload({
       watch: 'public',
     })),
-  ],
+  ]
 };
