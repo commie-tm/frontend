@@ -11,6 +11,7 @@ import { readFileSync } from 'fs';
 import { join } from 'path';
 import typescript from '@rollup/plugin-typescript';
 import { config as envConfig } from 'dotenv';
+import json from '@rollup/plugin-json';
 
 envConfig();
 
@@ -34,6 +35,7 @@ export default {
     commonjs({
       include: /node_modules/,
     }),
+    json(),
     typescript(),
     babel({
       extensions,
