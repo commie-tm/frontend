@@ -1,4 +1,18 @@
-.inner-form-container {
-  height: 40vh;
+.register-form {
   width: 20vw;
+  height: 40vh;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+
+  .form {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+
+    .submit-button-container {
+      display: flex;
+      justify-content: flex-end;
+    }
+  }
 }

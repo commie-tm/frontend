@@ -5,13 +5,13 @@ import babel from '@rollup/plugin-babel';
 import html from '@rollup/plugin-html';
 import scss from 'rollup-plugin-scss';
 import { terser } from 'rollup-plugin-terser';
-import serve from 'rollup-plugin-serve';
 import livereload from 'rollup-plugin-livereload';
 import { readFileSync } from 'fs';
 import { join } from 'path';
-import typescript from '@rollup/plugin-typescript';
+import typescript from 'rollup-plugin-typescript2';
 import { config as envConfig } from 'dotenv';
 import json from '@rollup/plugin-json';
+import copy from 'rollup-plugin-copy';
 
 envConfig();
 
@@ -26,6 +26,11 @@ export default {
     format: 'cjs',
   },
   plugins: [
+    copy({
+      targets: [
+        { src: 'assets/*', dest: 'public/assets' }
+      ]
+    }),
     replace({
       'process.env.NODE_ENV': JSON.stringify(isProd ? 'production' : 'development'),
     }),
@@ -74,12 +79,6 @@ export default {
       output: 'public/style.css',
     }),
     (isProd && terser()),
-    (!isProd && serve({
-      host: 'localhost',
-      port: 3000,
-      open: false,
-      contentBase: ['public'],
-    })),
     (!isProd && livereload({
       watch: 'public',
     })),

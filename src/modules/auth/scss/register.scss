@@ -2,7 +2,30 @@
   width: 100vw;
   height: 100vh;
   
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: 4fr 6fr;
+  
+  .form-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .illustration-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    .register-illustration {
+      width: 50%;
+      height: auto;
+    }
+
+    .hint-text {
+      margin-top: 2.5rem;
+      color: rgba(0,0,0,.8);
+      font-size: 18px;
+      letter-spacing: -0.5px;
+    }
+  }
 }

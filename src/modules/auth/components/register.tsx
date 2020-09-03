@@ -1,11 +1,17 @@
 import '../scss/register.scss';
 
-import { useQuery } from '@apollo/client';
+import { useMutation } from '@apollo/client';
 import * as React from 'react';
+import { colors } from '@material-ui/core';
 
-import { PublicUser, Unnamed_1_MutationVariables as RegisterMutationVars } from '../../../generated/graphql';
+import {
+  Unnamed_1_MutationVariables as RegisterMutationVars,
+  Unnamed_1_Mutation as RegisterResponse
+} from '../../../generated/graphql';
 import { MUTATION_USER_REGISTER } from './mutation';
 import { RegisterForm } from './register-form';
+import { Redirect } from 'react-router-dom';
+
 
 export const Register: React.FunctionComponent<Record<string, unknown>> = (): JSX.Element => {
   const [username, setUsername] = React.useState<string>('');
@@ -13,43 +19,44 @@ export const Register: React.FunctionComponent<Record<string, unknown>> = (): JS
   const [name, setName] = React.useState<string>('');
   const [email, setEmail] = React.useState<string>('');
 
-  const [registerStatus, setRegisterStatus] = React.useState<boolean>(false);
-  const [error, setError] = React.useState<string>('');
-
-  const registerRequest = (): void => {
-    const { data, error, loading } = useQuery<PublicUser, RegisterMutationVars>(MUTATION_USER_REGISTER, {
-      variables: {
-        user: {
-          username,
-          password,
-          email,
-          name
-        }
+  const [ register, { data } ] = useMutation<RegisterResponse, RegisterMutationVars>(MUTATION_USER_REGISTER, {
+    variables: {
+      user: {
+        username,
+        password,
+        email,
+        name
       }
-    });
-
-    if (error) {
-      setRegisterStatus(false);
-      setError(error.message);
-      return;
     }
+  });
 
-    if (!data) {
-      setError('Unknown error');
-      return;
-    }
-
-    setRegisterStatus(true);
+  if (data) {
+    window.localStorage.setItem('session-token', data.addUser.jwt);
+    return <Redirect to='/dashboard' />;
   }
 
   return (
     <section className="register-page">
-      <RegisterForm
-        setUsername={ev => setUsername(ev.target.value)}
-        setPassword={ev => setPassword(ev.target.value)}
-        setName={ev => setName(ev.target.value)}
-        setEmail={ev => setEmail(ev.target.value)}
-      />
+      <section className="illustration-container" style={{ background: colors.yellow[400] }}>
+          <img
+            src="/assets/illustrations/undraw_card.svg"
+            alt="User register illustration"
+            className="register-illustration"
+          />
+          <div className="hint-text">
+            Register for an account today to start using the
+            next-gen service of Commie.
+          </div>
+      </section>
+      <section className="form-container">
+        <RegisterForm
+          setUsername={val => setUsername(val)} username={username}
+          setPassword={val => setPassword(val)} password={password}
+          setName={val => setName(val)} name={name}
+          setEmail={val => setEmail(val)} email={email}
+          onSubmit={register}
+        />
+      </section>
     </section>
   )
 }

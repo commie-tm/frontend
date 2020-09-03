@@ -64,7 +64,7 @@ export type UserAuthInput = {
 
 export type Mutation = {
   __typename?: 'Mutation';
-  addUser: PublicUser;
+  addUser: LoginResponse;
   deleteUser: PublicUser;
 };
 
@@ -93,7 +93,7 @@ export type Unnamed_1_MutationVariables = Exact<{
 export type Unnamed_1_Mutation = (
   { __typename?: 'Mutation' }
   & { addUser: (
-    { __typename?: 'PublicUser' }
-    & Pick<PublicUser, 'id' | 'username' | 'createdAt'>
+    { __typename?: 'LoginResponse' }
+    & Pick<LoginResponse, 'jwt'>
   ) }
 );
