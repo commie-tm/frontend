@@ -33,5 +33,5 @@ export class Index extends React.Component<Record<string, unknown>> {
         </MuiThemeProvider>
       </ApolloProvider>
     )
-  }
+  };
 }

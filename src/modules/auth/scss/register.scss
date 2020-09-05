@@ -9,6 +9,14 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
+
+    .open-source-notice {
+      font-size: .75rem;
+      text-align: center;
+      margin-top: .5rem;
+      color: rgba(255,255,255,.6);
+    }
   }
   .illustration-container {
     display: flex;

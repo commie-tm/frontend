@@ -2,13 +2,13 @@ import '../scss/register.scss';
 
 import { useMutation } from '@apollo/client';
 import * as React from 'react';
-import { colors } from '@material-ui/core';
+import { colors, Typography } from '@material-ui/core';
 
 import {
   Unnamed_1_MutationVariables as RegisterMutationVars,
   Unnamed_1_Mutation as RegisterResponse
 } from '../../../generated/graphql';
-import { MUTATION_USER_REGISTER } from './mutation';
+import { MUTATION_USER_REGISTER } from './register-mutation';
 import { RegisterForm } from './register-form';
 import { Redirect } from 'react-router-dom';
 
@@ -56,6 +56,10 @@ export const Register: React.FunctionComponent<Record<string, unknown>> = (): JS
           setEmail={val => setEmail(val)} email={email}
           onSubmit={register}
         />
+        <Typography className="open-source-notice">
+          This project is open source 
+          at <a href="https://github.com/commie-tm" target="_blank" rel="noreferrer">GitHub/commie-tm</a>
+        </Typography>
       </section>
     </section>
   )
