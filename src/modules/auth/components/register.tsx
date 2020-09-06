@@ -43,10 +43,10 @@ export const Register: React.FunctionComponent<Record<string, unknown>> = (): JS
             alt="User register illustration"
             className="register-illustration"
           />
-          <div className="hint-text">
+          <Typography className="hint-text" variant="body1">
             Register for an account today to start using the
             next-gen service of Commie.
-          </div>
+          </Typography>
       </section>
       <section className="form-container">
         <RegisterForm

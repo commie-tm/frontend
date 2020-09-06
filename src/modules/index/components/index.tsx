@@ -9,6 +9,7 @@ import applicationConfig from '../../../../config.json';
 import { Register } from '../../auth/components/register';
 import { Splash } from '../../splash/components/splash';
 import { getTheme } from './mui-theme';
+import { Login } from '../../auth/components/login';
 
 const client = new ApolloClient({
   uri: applicationConfig.GRAPHQL_SCHEMA,
@@ -27,6 +28,9 @@ export class Index extends React.Component<Record<string, unknown>> {
               </Route>
               <Route path='/register' exact>
                 <Register />
+              </Route>
+              <Route path='/login'>
+                <Login />
               </Route>
             </Switch>
           </Router>

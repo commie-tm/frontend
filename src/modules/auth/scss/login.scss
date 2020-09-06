@@ -1,9 +1,9 @@
-.register-page {
+.login-page {
   width: 100vw;
   height: 100vh;
   
   display: grid;
-  grid-template-columns: 4fr 6fr;
+  grid-template-columns: 6fr 4fr;
   
   .form-container {
     display: flex;
@@ -24,14 +24,14 @@
     justify-content: center;
     flex-direction: column;
 
-    .register-illustration {
+    .login-illustration {
       width: 50%;
       height: auto;
     }
 
     .hint-text {
       margin-top: 2.5rem;
-      color: rgba(0,0,0,.8);
+      color: rgba(255,255,255,.8);
       letter-spacing: -0.5px;
     }
   }
