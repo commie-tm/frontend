@@ -1,5 +1,5 @@
-.register-form {
-  width: 17vw;
+.login-form {
+  width: 15vw;
   height: 40vh;
   padding: 1rem;
   display: flex;
@@ -14,6 +14,7 @@
     .submit-button-container {
       display: flex;
       justify-content: flex-end;
+      width: 100%;
     }
   }
 }

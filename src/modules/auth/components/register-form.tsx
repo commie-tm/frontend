@@ -104,7 +104,7 @@ export const RegisterForm: React.FunctionComponent<RegisterFormProps> = (props: 
         <div className="flex-grow" />
         <div className="submit-button-container">
           <Button type="submit" variant="contained" color="primary" className="submit-button">
-            Submit
+            Register
           </Button>
         </div>
       </form>
