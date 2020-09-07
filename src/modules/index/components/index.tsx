@@ -10,6 +10,8 @@ import { Register } from '../../auth/components/register';
 import { Splash } from '../../splash/components/splash';
 import { getTheme } from './mui-theme';
 import { Login } from '../../auth/components/login';
+import { ProtectedRoute } from './protected-route';
+import { Dashboard } from '@material-ui/icons';
 
 const client = new ApolloClient({
   uri: applicationConfig.GRAPHQL_SCHEMA,
@@ -32,6 +34,9 @@ export class Index extends React.Component<Record<string, unknown>> {
               <Route path='/login'>
                 <Login />
               </Route>
+              <ProtectedRoute path='/dashboard'>
+                <Dashboard />
+              </ProtectedRoute>
             </Switch>
           </Router>
         </MuiThemeProvider>
